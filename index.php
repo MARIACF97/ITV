@@ -96,15 +96,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="fecha">Fecha</label>
                 <input type="date" name="fecha_insp" id="fecha" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="hora">Hora</label>
                 <input type="time" name="hora_insp" id="hora" class="form-control" required>
             </div>
+            <br>
             <input type="hidden" name="resultado" value="PENDIENTE">
             <div class="form-group">
                 <label for="observaciones">Observaciones</label>
+                <br>
                 <textarea name="observaciones" id="observaciones" class="form-control"></textarea>
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
 
@@ -117,18 +121,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="matricula">Matrícula</label>
                 <input type="text" name="matricula" id="matricula" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="modelo">Modelo</label>
                 <input type="text" name="modelo" id="modelo" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="combustible">Combustible</label>
                 <input type="text" name="combustible" id="combustible" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="año_fab">Año de Fabricación</label>
                 <input type="number" name="año_fab" id="año_fab" class="form-control" required>
             </div>
+            <br>
             <button type="submit" name="registrar_vehiculo" class="btn btn-primary">Registrar Vehículo</button>
         </form>
 
@@ -141,14 +149,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="localidad">Localidad</label>
                 <input type="text" name="localidad" id="localidad" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="provincia">Provincia</label>
                 <input type="text" name="provincia" id="provincia" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion" class="form-control" required>
             </div>
+            <br>
             <button type="submit" name="registrar_sede" class="btn btn-primary">Registrar Sede</button>
         </form>
     </div>

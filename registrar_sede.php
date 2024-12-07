@@ -40,17 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Registrar Sede</h1>
         <form method="post">
             <div class="form-group">
-                <label for="localidad">Localidad</label>
+                <label for="localidad">Localidad: </label>
                 <input type="text" name="localidad" id="localidad" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="provincia">Provincia</label>
+                <label for="provincia">Provincia: </label>
                 <input type="text" name="provincia" id="provincia" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="direccion">Dirección</label>
+                <label for="direccion">Dirección: </label>
                 <input type="text" name="direccion" id="direccion" class="form-control" required>
             </div>
+            <br>
             <button type="submit" class="btn btn-success">Registrar</button>
         </form>
 
@@ -66,25 +69,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $provincia = $sede['provincia'];
                 $direccion = $sede['direccion'];
         ?>
-
                 <h2>Actualizar Sede</h2>
                 <form method="post">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <div class="form-group">
-                        <label for="localidad">Localidad</label>
+                        <label for="localidad">Localidad: </label>
                         <input type="text" name="localidad" id="localidad" class="form-control" value="<?= $localidad ?>" required>
                     </div>
+                    <br>
                     <div class="form-group">
-                        <label for="provincia">Provincia</label>
+                        <label for="provincia">Provincia: </label>
                         <input type="text" name="provincia" id="provincia" class="form-control" value="<?= $provincia ?>" required>
                     </div>
+                    <br>
                     <div class="form-group">
-                        <label for="direccion">Dirección</label>
+                        <label for="direccion">Dirección: </label>
                         <input type="text" name="direccion" id="direccion" class="form-control" value="<?= $direccion ?>" required>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Actualizar</button>
                 </form>
-
         <?php
             } else {
                 echo "<p class='alert alert-warning'>Sede no encontrada</p>";
