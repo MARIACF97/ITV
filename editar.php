@@ -9,12 +9,14 @@ $vehiculo = $resultado->fetch_assoc();
 
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Editar Vehículo</title>
 </head>
+
 <body>
     <div class="container">
         <h1>Editar Vehículo</h1>
@@ -33,4 +35,5 @@ $vehiculo = $resultado->fetch_assoc();
         </form>
     </div>
 </body>
+
 </html>

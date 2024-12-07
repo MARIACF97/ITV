@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,11 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#tabla-inspecciones').DataTable();
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -47,7 +49,7 @@
                         JOIN sede ON vehiculo.id_sede = sede.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while($fila = $resultado->fetch_assoc()){
+                while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>{$fila['matricula']}</td>";
                     echo "<td>{$fila['modelo']}</td>";
@@ -86,7 +88,7 @@
                         JOIN sede ON inspeccion.id_sede = sede.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while($fila = $resultado->fetch_assoc()){
+                while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>{$fila['matricula']} ({$fila['modelo']})</td>";
                     echo "<td>{$fila['localidad']}, {$fila['provincia']}</td>";
@@ -104,4 +106,5 @@
         </table>
     </div>
 </body>
+
 </html>
