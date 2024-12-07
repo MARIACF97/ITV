@@ -2,37 +2,47 @@
 <html lang="es">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <title>ITV</title>
+    <title>Eliminar Inspección</title>
 </head>
 
 <body>
-    <?php
-    $id = $_GET['id'];
+    <div class="container">
+        <?php
+        // Verificar si el ID está en la URL
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
 
-    //Establezco conexión
-    require 'conexion.php';
+            // Validar que el ID sea numérico
+            if (is_numeric($id)) {
+                // Conexión a la base de datos
+                require 'conexion.php';
 
-    //Preparo la sentencia SQL
-    $sql = "DELETE FROM inspecciones WHERE id=$id";
+                // Crear la consulta de eliminación
+                $sql = "DELETE FROM inspección WHERE id = $id";
 
-    //Ejecutamos sentencia y guardamos resultado
-    $resultado = $mysqli->query($sql);
+                // Ejecutar la consulta
+                $resultado = $mysqli->query($sql);
 
-    if ($resultado > 0) {
-        echo "<p class='alert alert-success'>Inspección eliminada con éxito.</p>";
-    } else {
-        echo "<p class='alert alert-danger'>Error al eliminar inspección.</p>";
-    }
-    echo "<a href='index.php' class='btn btn-primary'>Volver</a>";
-    ?>
+                // Comprobar si se eliminó alguna fila
+                if ($resultado) {
+                    echo "<p class='alert alert-success'>La inspección con ID $id fue eliminada con éxito.</p>";
+                } else {
+                    echo "<p class='alert alert-warning'>No se encontró una inspección con el ID $id.</p>";
+                }
+            } else {
+                echo "<p class='alert alert-danger'>El ID proporcionado no es válido.</p>";
+            }
+        } else {
+            echo "<p class='alert alert-danger'>No se proporcionó un ID.</p>";
+        }
 
+        // Botón para volver al inicio
+        echo "<a href='index.php' class='btn btn-primary'>Volver</a>";
+        ?>
+    </div>
 </body>
 
 </html>
