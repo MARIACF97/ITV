@@ -1,42 +1,50 @@
-<?php
-require 'conexion.php';
+<!-- registrar2.php -->
 
-// Capturar los datos del formulario
-$id_inspeccion = isset($_POST['id_inspeccion']) ? $_POST['id_inspeccion'] : null;
-$id_vehiculo = isset($_POST['id_vehiculo']) ? $_POST['id_vehiculo'] : null;
-$id_sede = isset($_POST['id_sede']) ? $_POST['id_sede'] : null;
-$fecha_insp = isset($_POST['fecha_insp']) ? $_POST['fecha_insp'] : null;
-$hora_insp = isset($_POST['hora_insp']) ? $_POST['hora_insp'] : null;
-$resultado = isset($_POST['resultado']) ? $_POST['resultado'] : null;
-$observaciones = isset($_POST['observaciones']) ? $_POST['observaciones'] : null;
+<!doctype html>
+<html lang="es">
 
-// Verificar que los IDs de vehículo y sede existan antes de insertar
-$vehiculo_valido = false;
-$sede_valida = false;
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Registrar Inspección</title>
+</head>
 
-$vehiculo_check = $mysqli->query("SELECT id_vehiculo FROM vehiculo WHERE id_vehiculo = '$id_vehiculo'");
-$sede_check = $mysqli->query("SELECT id_sede FROM sede WHERE id_sede = '$id_sede'");
+<body>
+    <div class="container">
+        <h1>Registrar Inspección</h1>
+        <form action="guardar_inspeccion.php" method="post">
+            <div class="form-group">
+                <label for="id_vehiculo">Vehículo</label>
+                <input type="text" name="id_vehiculo" id="id_vehiculo" class="form-control" placeholder="ID del vehículo" required>
+            </div>
+            <div class="form-group">
+                <label for="id_sede">Sede</label>
+                <input type="text" name="id_sede" id="id_sede" class="form-control" placeholder="ID de la sede" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_insp">Fecha</label>
+                <input type="date" name="fecha_insp" id="fecha_insp" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="hora_insp">Hora</label>
+                <input type="time" name="hora_insp" id="hora_insp" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="resultado">Resultado</label>
+                <select name="resultado" id="resultado" class="form-control" required>
+                    <option value="PENDIENTE">PENDIENTE</option>
+                    <option value="FAVORABLE">FAVORABLE</option>
+                    <option value="DESFAVORABLE">DESFAVORABLE</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="observaciones">Observaciones</label>
+                <textarea name="observaciones" id="observaciones" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</body>
 
-if ($vehiculo_check->num_rows > 0) {
-    $vehiculo_valido = true;
-}
-
-if ($sede_check->num_rows > 0) {
-    $sede_valida = true;
-}
-
-// Verificar que ambos existan antes de continuar con la inserción
-if ($vehiculo_valido && $sede_valida) {
-    $sql = "INSERT INTO inspeccion (id_inspeccion, id_vehiculo, id_sede, fecha_insp, hora_insp, resultado, observaciones)
-            VALUES ('$id_inspeccion', '$id_vehiculo', '$id_sede', '$fecha_insp', '$hora_insp', '$resultado', '$observaciones')";
-
-    if ($mysqli->query($sql)) {
-        echo "<p>Inspección registrada con éxito</p>";
-        echo '<a href="index.php" class="btn btn-primary">Volver</a>';
-    } else {
-        echo "<p>Error: " . $mysqli->error . "</p>";
-    }
-} else {
-    echo "<p>Error: Uno o ambos de los identificadores de vehículo o sede no existen.</p>";
-    echo '<a href="index.php" class="btn btn-primary">Volver</a>';
-}
+</html>
