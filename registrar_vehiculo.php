@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1>Registrar Vehículo</h1>
         <form action="" method="post">
             <div class="form-group">
-                <label for="matricula">Matrícula</label>
+                <label for="matricula">Matrícula:</label>
                 <input type="text" name="matricula" id="matricula" class="form-control" required>
             </div>
             <div class="form-group">

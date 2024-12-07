@@ -48,6 +48,7 @@ $resultado = $mysqli->query($sql);
                 ?>
             </tbody>
         </table>
+        <a href="index.php" class="btn btn-link">Volver al inicio</a>
     </div>
 </body>
 

@@ -10,4 +10,4 @@ if ($mysqli->query($sql)) {
     echo "<p class='alert alert-danger'>Error al eliminar la sede</p>";
 }
 ?>
-<a href="sede.php" class="btn btn-primary">Regresar</a>
+<a href="sedes.php" class="btn btn-primary">Regresar</a>
