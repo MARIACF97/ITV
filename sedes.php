@@ -31,6 +31,10 @@ $sedes = $mysqli->query("SELECT * FROM sede");
                         <td><?= $sede['localidad'] ?></td>
                         <td><?= $sede['provincia'] ?></td>
                         <td><?= $sede['direccion'] ?></td>
+                        <td>
+                            <a href="editar_sede.php?id=<?= $sede['id_sede'] ?>" class="btn btn-warning">Editar</a>
+                            <a href="eliminar.php?id=<?= $sede['id_sede'] ?>&tabla=sede" class="btn btn-danger"></a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
