@@ -1,71 +1,47 @@
 <?php
 require 'conexion.php';
 
-// Consulta para obtener todas las inspecciones
-$resultado = $mysqli->query("SELECT inspeccion.id_inspeccion, vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia, inspeccion.fecha_insp, inspeccion.hora_insp, inspeccion.resultado, inspeccion.observaciones FROM inspeccion 
-                             JOIN vehiculo ON inspeccion.id_vehiculo = vehiculo.id_vehiculo 
-                             JOIN sede ON inspeccion.id_sede = sede.id_sede");
-?>
+// Consulta SQL para obtener todos los registros de la tabla inspección junto con sus datos de vehículo y sede
+$sql = "SELECT inspeccion.id_inspeccion, vehiculo.matricula, sede.localidad, inspeccion.fecha_insp, inspeccion.hora_insp, inspeccion.resultado, inspeccion.observaciones
+        FROM inspeccion
+        JOIN vehiculo ON inspeccion.id_vehiculo = vehiculo.id_vehiculo
+        JOIN sede ON inspeccion.id_sede = sede.id_sede
+        ORDER BY inspeccion.id_inspeccion DESC"; // ordenamos por id_inspección en orden descendente
 
-<!doctype html>
-<html lang="es">
+$resultado = $mysqli->query($sql);
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Gestión de Inspecciones</title>
-</head>
+if ($resultado->num_rows > 0) {
+    // Hay registros para mostrar
+    echo '<table class="table table-bordered">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>ID Inspección</th>';
+    echo '<th>Matrícula</th>';
+    echo '<th>Localidad</th>';
+    echo '<th>Fecha</th>';
+    echo '<th>Hora</th>';
+    echo '<th>Resultado</th>';
+    echo '<th>Observaciones</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
 
-<body>
-    <div class="container">
-        <h1>Gestión de Inspecciones</h1>
-        <table id="tabla_inspecciones" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID Inspección</th>
-                    <th>Matrícula Vehículo</th>
-                    <th>Modelo Vehículo</th>
-                    <th>Localidad Sede</th>
-                    <th>Provincia Sede</th>
-                    <th>Fecha Inspección</th>
-                    <th>Hora Inspección</th>
-                    <th>Resultado</th>
-                    <th>Observaciones</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($inspeccion = $resultado->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $inspeccion['id_inspeccion'] ?></td>
-                        <td><?= $inspeccion['matricula'] ?></td>
-                        <td><?= $inspeccion['modelo'] ?></td>
-                        <td><?= $inspeccion['localidad'] ?></td>
-                        <td><?= $inspeccion['provincia'] ?></td>
-                        <td><?= $inspeccion['fecha_insp'] ?></td>
-                        <td><?= $inspeccion['hora_insp'] ?></td>
-                        <td><?= $inspeccion['resultado'] ?></td>
-                        <td><?= $inspeccion['observaciones'] ?></td>
-                        <td>
-                            <a href="editar.php?id=<?= $inspeccion['id_inspeccion'] ?>" class="btn btn-primary">Editar</a>
-                            <a href="eliminar_inspeccion.php?id=<?= $inspeccion['id_inspeccion'] ?>" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-        <a href="registrar.php" class="btn btn-success">Registrar Nueva Inspección</a>
-    </div>
+    // Iterar sobre los registros
+    while ($row = $resultado->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . $row['id_inspeccion'] . '</td>';
+        echo '<td>' . $row['matricula'] . '</td>';
+        echo '<td>' . $row['localidad'] . '</td>';
+        echo '<td>' . $row['fecha_insp'] . '</td>';
+        echo '<td>' . $row['hora_insp'] . '</td>';
+        echo '<td>' . $row['resultado'] . '</td>';
+        echo '<td>' . $row['observaciones'] . '</td>';
+        echo '</tr>';
+    }
 
-    <!-- jQuery and DataTables scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tabla_inspecciones').DataTable();
-        });
-    </script>
-</body>
-
-</html>
+    echo '</tbody>';
+    echo '</table>';
+} else {
+    // No hay registros para mostrar
+    echo '<p>No data available in table</p>';
+}
