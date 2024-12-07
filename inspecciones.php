@@ -93,7 +93,7 @@ $inspecciones = $mysqli->query("
                                     <td>{$inspeccion['resultado']}</td>
                                     <td>
                                         <a href='editar_inspecciones.php?id={$inspeccion['id_inspeccion']}' class='btn btn-warning btn-sm'>Editar</a>
-                                        <a href='eliminar_inspecciones.php?id={$inspeccion['id_inspeccion']}' class='btn btn-danger btn-sm'>Eliminar</a>
+                                        <a href='eliminar_inspeccion.php?id={$inspeccion['id_inspeccion']}' class='btn btn-danger btn-sm'>Eliminar</a>
                                     </td>
                                   </tr>";
                         }
