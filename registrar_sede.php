@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="direccion" id="direccion" class="form-control" required>
             </div>
             <br>
-            <button type="submit" class="btn btn-success">Registrar</button>
+            <button type="submit" class="btn btn-primary">Registrar</button>
             <a href="index.php" class="btn btn-secondary ml-2">Volver</a>
         </form>
 
