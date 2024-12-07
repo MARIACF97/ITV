@@ -2,7 +2,7 @@
 require 'conexion.php';
 
 $id = $_GET['id'];
-$sql = "SELECT id_vehiculo, matricula, modelo FROM vehiculo WHERE id_vehiculo = $id";
+$sql = "SELECT id_vehiculo, matricula, modelo, combustible, año_fab FROM vehiculo WHERE id_vehiculo = $id";
 $resultado = $mysqli->query($sql);
 $vehiculo = $resultado->fetch_assoc();
 ?>
@@ -30,6 +30,15 @@ $vehiculo = $resultado->fetch_assoc();
                 <label for="modelo">Modelo</label>
                 <input type="text" class="form-control" name="modelo" value="<?php echo $vehiculo['modelo']; ?>">
             </div>
+            <div class="form-group">
+                <label for="combustible">Combustible</label>
+                <input type="text" class="form-control" name="combustible" value="<?php echo $vehiculo['combustible']; ?>">
+            </div>
+            <div class="form-group">
+                <label for="año_fab">Año Fabricación</label>
+                <input type="text" class="form-control" name="año_fab" value="<?php echo $vehiculo['año_fab']; ?>">
+            </div>
+
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="index.php" class="btn btn-secondary">Cancelar</a>
         </form>
