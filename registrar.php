@@ -1,6 +1,10 @@
 <?php
 require 'conexion.php';
+
+// Consulta para obtener todos los vehículos
 $vehiculos = $mysqli->query("SELECT id_vehiculo, matricula, modelo FROM vehiculo");
+
+// Consulta para obtener todas las sedes
 $sedes = $mysqli->query("SELECT id_sede, localidad, provincia FROM sede");
 ?>
 
@@ -18,19 +22,11 @@ $sedes = $mysqli->query("SELECT id_sede, localidad, provincia FROM sede");
     <form action="registrar2.php" method="post">
         <div class="form-group">
             <label for="vehiculo">Vehículo</label>
-            <select name="id_vehiculo" id="vehiculo" class="form-control" required>
-                <?php while ($vehiculo = $vehiculos->fetch_assoc()) { ?>
-                    <option value="<?= $vehiculo['id_vehiculo'] ?>"><?= $vehiculo['matricula'] . ' - ' . $vehiculo['modelo'] ?></option>
-                <?php } ?>
-            </select>
+            <input type="text" name="matricula" id="vehiculo" class="form-control" placeholder="Ingrese la matrícula y modelo del vehículo" required>
         </div>
         <div class="form-group">
             <label for="sede">Sede</label>
-            <select name="id_sede" id="sede" class="form-control" required>
-                <?php while ($sede = $sedes->fetch_assoc()) { ?>
-                    <option value="<?= $sede['id_sede'] ?>"><?= $sede['localidad'] . ', ' . $sede['provincia'] ?></option>
-                <?php } ?>
-            </select>
+            <input type="text" name="localidad" id="sede" class="form-control" placeholder="Ingrese la localidad y provincia de la sede" required>
         </div>
         <div class="form-group">
             <label for="fecha">Fecha</label>
