@@ -1,0 +1,213 @@
+/* CSS Document */
+
+
+div#ui-datepicker-div {
+	position: relative;
+	z-index: 100!important;
+	display: none;
+}
+
+#ui-datepicker-div {
+	padding: 8px;
+	border: 1px solid #999999;
+	background: #EBEBE8;
+	
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);	
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);	
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);	
+}
+
+.ui-datepicker-trigger {
+	margin-left: 5px;
+	vertical-align: middle;
+	cursor: pointer;	
+}
+
+#ui-datepicker-div, #ui-datepicker-div table {
+  font-size: 11px;
+  color: #333;
+  cursor: default;
+}
+
+#ui-datepicker-div table {
+	border-collapse: separate;
+}
+
+#ui-datepicker-div td {
+	padding: 4px;
+	text-align: center;
+}
+
+
+.ui-datepicker-header {
+	min-height: 16px;
+	text-align: center;
+  color: #008ED2;
+}
+
+.ui-datepicker-header:after {
+	content: '';
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+
+a.ui-corner-all {
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 9px;
+	display: inline-block;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+a.ui-datepicker-prev, a.ui-datepicker-next {
+	margin-top: 2px;
+}
+
+
+a.ui-datepicker-prev{
+	background-image: url(../imagenes/flecha_izq.png);
+	background-position: 0 0;	
+	float: left;
+}
+a.ui-datepicker-next{
+	background-image: url(../imagenes/flecha_der.png);
+	background-position: 100% 0;	
+	float: right;
+}
+a.ui-datepicker-prev:hover, a.ui-datepicker-prev:focus{
+	background-position: 0 -40px;
+}
+a.ui-datepicker-next:hover, a.ui-datepicker-next:focus{
+	background-position: 100% -40px;
+}
+
+.ui-datepicker-title { 
+  font-weight: bold;
+  text-align: center;
+  color: #008ED2;
+  font-size: 1em;
+  padding: 0 4px 4px 4px;
+  line-height: 120%;
+  min-height: 16px;
+}
+
+.ui-datepicker-title select {
+	width: 40%;	
+	margin: 0 1%;
+	vertical-align: middle;
+}
+
+#ui-datepicker-div tbody {
+	background: #FFFFFF;
+	
+	-moz-box-shadow: 2px 2px 2px rgba(0,0,0,0.5) inset;	
+	-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.5) inset;	
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5) inset;
+}
+
+
+#ui-datepicker-div thead th {
+  border-bottom: 1px solid #CCCCCC;
+  padding: 4px 2px;
+  text-align: center;
+  color: #008ED2;
+  font-weight:bold;
+}
+
+#ui-datepicker-div tbody tr:hover {
+	background-color: #F4F4F2;	
+}
+
+#ui-datepicker-div tbody td { 
+  width: 2em;
+  color: #008ED2;
+  padding: 4px;
+
+}
+
+#ui-datepicker-div tbody a {
+	text-decoration: none;
+	color: #008ED2;	
+}
+
+#ui-datepicker-div tbody td.ui-state-disabled {
+  font-size: 80%;
+  color: #999999;
+}
+
+#ui-datepicker-div tbody td.ui-datepicker-week-end, #ui-datepicker-div tbody td.ui-datepicker-week-end a { 
+  color: #EB6E3C;
+}
+
+
+#ui-datepicker-div tbody td:hover { 
+  background: #EBEBE8;
+  border: 1px solid #00B1F4;
+  cursor: pointer;
+  padding: 3px;
+  color: #005B88;
+  
+  -moz-box-shadow: 0 0 2px #51866B;
+  -webkit-box-shadow: 0 0 2px #51866B;
+  box-shadow: 0 0 2px #51866B;
+}
+
+#ui-datepicker-div tbody a:hover, #ui-datepicker-div tbody td:hover a {
+	text-decoration: none;
+	color: #005B88;	
+}
+
+
+#ui-datepicker-div tbody td.ui-datepicker-week-end:hover, #ui-datepicker-div tbody td.ui-datepicker-week-end:hover a, #ui-datepicker-div tbody td.ui-datepicker-week-end a:hover {
+	color: #600;
+}
+
+#ui-datepicker-div tbody td.ui-state-disabled:hover {
+	cursor: default;
+	border: 0;
+	padding: 4px;
+	background: transparent;
+	  -moz-box-shadow: none;
+	  -webkit-box-shadow: none;
+	  box-shadow: none;
+}
+
+
+#ui-datepicker-div tbody .daynames td:hover { /* Hovered cells <TD> */
+  background: transparent;
+  border: 0;
+  cursor: default;
+  padding: 4px;
+  color: #6C8489;
+  
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#ui-datepicker-div tbody td:active { /* Active (pressed) cells <TD> */
+  background: #EBEBE8;
+  border: 1px solid #00B1F4;
+  cursor: pointer;
+  padding: 3px;
+  color: #005B88;
+  
+  -moz-box-shadow: 0 0 2px #51866B inset;
+  -webkit-box-shadow: 0 0 2px #51866B inset;
+  box-shadow: 0 0 2px #51866B inset;
+}
+
+#ui-datepicker-div tbody .ui-state-disabled { color: #999; }
+
+
+
+
+
+
