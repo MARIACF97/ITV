@@ -1,5 +1,3 @@
-<!-- registrar2.php -->
-
 <!doctype html>
 <html lang="es">
 
@@ -18,30 +16,29 @@
                 <label for="id_vehiculo">Vehículo</label>
                 <input type="text" name="id_vehiculo" id="id_vehiculo" class="form-control" placeholder="ID del vehículo" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="id_sede">Sede</label>
                 <input type="text" name="id_sede" id="id_sede" class="form-control" placeholder="ID de la sede" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="fecha_insp">Fecha</label>
                 <input type="date" name="fecha_insp" id="fecha_insp" class="form-control" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="hora_insp">Hora</label>
                 <input type="time" name="hora_insp" id="hora_insp" class="form-control" required>
             </div>
-            <div class="form-group">
-                <label for="resultado">Resultado</label>
-                <select name="resultado" id="resultado" class="form-control" required>
-                    <option value="PENDIENTE">PENDIENTE</option>
-                    <option value="FAVORABLE">FAVORABLE</option>
-                    <option value="DESFAVORABLE">DESFAVORABLE</option>
-                </select>
-            </div>
+            <br>
+            <input type="hidden" name="resultado" id="resultado" value="PENDIENTE">
             <div class="form-group">
                 <label for="observaciones">Observaciones</label>
+                <br>
                 <textarea name="observaciones" id="observaciones" class="form-control"></textarea>
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
