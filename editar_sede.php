@@ -26,14 +26,17 @@ $sede = $resultado->fetch_assoc();
                 <label for="localidad">Localidad</label>
                 <input type="text" class="form-control" name="localidad" value="<?php echo $sede['localidad']; ?>">
             </div>
+            <br>
             <div class="form-group">
                 <label for="provincia">Provincia</label>
                 <input type="text" class="form-control" name="provincia" value="<?php echo $sede['provincia']; ?>">
             </div>
+            <br>
             <div class="form-group">
                 <label for="direccion">Dirección</label>
                 <input type="text" class="form-control" name="direccion" value="<?php echo $sede['direccion']; ?>">
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="sede.php" class="btn btn-secondary">Cancelar</a>
         </form>

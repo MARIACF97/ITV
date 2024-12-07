@@ -26,19 +26,22 @@ $vehiculo = $resultado->fetch_assoc();
                 <label for="matricula">Matrícula</label>
                 <input type="text" class="form-control" name="matricula" value="<?php echo $vehiculo['matricula']; ?>">
             </div>
+            <br>
             <div class="form-group">
                 <label for="modelo">Modelo</label>
                 <input type="text" class="form-control" name="modelo" value="<?php echo $vehiculo['modelo']; ?>">
             </div>
+            <br>
             <div class="form-group">
                 <label for="combustible">Combustible</label>
                 <input type="text" class="form-control" name="combustible" value="<?php echo $vehiculo['combustible']; ?>">
             </div>
+            <br>
             <div class="form-group">
                 <label for="año_fab">Año Fabricación</label>
                 <input type="text" class="form-control" name="año_fab" value="<?php echo $vehiculo['año_fab']; ?>">
             </div>
-
+            <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="index.php" class="btn btn-secondary">Cancelar</a>
         </form>

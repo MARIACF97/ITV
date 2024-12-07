@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="sede">Sede</label>
                 <select name="id_sede" id="sede" class="form-control" required>
@@ -72,24 +72,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="fecha">Fecha</label>
                 <input type="date" name="fecha_insp" id="fecha" class="form-control" value="<?php echo $inspeccion['fecha_insp']; ?>" required>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="hora">Hora</label>
                 <input type="time" name="hora_insp" id="hora" class="form-control" value="<?php echo $inspeccion['hora_insp']; ?>" required>
             </div>
-
+            <br>
             <input type="hidden" name="resultado" value="<?php echo $inspeccion['resultado']; ?>">
 
             <div class="form-group">
                 <label for="observaciones">Observaciones</label>
                 <textarea name="observaciones" id="observaciones" class="form-control" required><?php echo $inspeccion['observaciones']; ?></textarea>
             </div>
-
+            <br>
             <button type="submit" class="btn btn-primary">Actualizar</button>
             <a href="index.php" class="btn btn-secondary">Volver</a>
         </form>
