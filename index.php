@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($mysqli->query($sql)) {
             echo "<p class='alert alert-success'>Inspección registrada con éxito</p>";
-            echo '<a href="index.php" class="btn btn-primary">Volver</a>';
         } else {
             echo "<p class='alert alert-danger'>Error: " . $mysqli->error . "</p>";
         }
@@ -93,8 +92,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Formulario para registrar inspección -->
         <form action="index.php" method="post">
             <div class="form-group">
-                <label for="fecha">Fecha</label>
-                <input type="date" name="fecha_insp" id="fecha" class="form-control" required>
+                <label for="vehiculo">Vehículo</label>
+                <select name="id_vehiculo" id="vehiculo" class="form-control" required>
+                    <?php
+                    // Consulta para obtener todos los vehículos
+                    $vehiculos = $mysqli->query("SELECT id_vehiculo, matricula, modelo, combustible, año_fab FROM vehiculo");
+
+
+                    while ($vehiculo = $vehiculos->fetch_assoc()) {
+                        echo "<option value='{$vehiculo['id_vehiculo']}'>
+                                {$vehiculo['matricula']} - {$vehiculo['modelo']}
+                                (Combustible: {$vehiculo['combustible']}, Año: {$vehiculo['año_fab']})
+                              </option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sede">Sede</label>
+                <select name="id_sede" id="sede" class="form-control" required>
+                    <?php
+                    // Consulta para obtener todas las sedes
+                    $sedes = $mysqli->query("SELECT id_sede, localidad, provincia, direccion FROM sede");
+
+
+                    while ($sede = $sedes->fetch_assoc()) {
+                        echo "<option value='{$sede['id_sede']}'>
+                                {$sede['localidad']} - {$sede['provincia']}
+                                (Dirección: {$sede['direccion']})
+                              </option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha_insp" id="fecha" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
@@ -110,58 +143,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Registrar</button>
+            <a href="index.php" class="btn btn-secondary ml-2">Volver</a>
         </form>
 
         <hr>
-
+        <br>
         <!-- Formulario para registrar nuevo vehículo -->
-        <form action="index.php" method="post">
-            <h2>Registrar Nuevo Vehículo</h2>
-            <div class="form-group">
-                <label for="matricula">Matrícula</label>
-                <input type="text" name="matricula" id="matricula" class="form-control" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="modelo">Modelo</label>
-                <input type="text" name="modelo" id="modelo" class="form-control" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="combustible">Combustible</label>
-                <input type="text" name="combustible" id="combustible" class="form-control" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="año_fab">Año de Fabricación</label>
-                <input type="number" name="año_fab" id="año_fab" class="form-control" required>
-            </div>
-            <br>
-            <button type="submit" name="registrar_vehiculo" class="btn btn-primary">Registrar Vehículo</button>
-        </form>
-
-        <hr>
-
+        <a href="registrar_vehiculo.php" class="btn btn-link">Registrar nuevo vehículo</a>
+        <br><br>
         <!-- Formulario para registrar nueva sede -->
-        <form action="index.php" method="post">
-            <h2>Registrar Nueva Sede</h2>
-            <div class="form-group">
-                <label for="localidad">Localidad</label>
-                <input type="text" name="localidad" id="localidad" class="form-control" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="provincia">Provincia</label>
-                <input type="text" name="provincia" id="provincia" class="form-control" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-                <input type="text" name="direccion" id="direccion" class="form-control" required>
-            </div>
-            <br>
-            <button type="submit" name="registrar_sede" class="btn btn-primary">Registrar Sede</button>
-        </form>
+        <a href="registrar_sede.php" class="btn btn-link">Registrar nueva sede</a>
+        
     </div>
 </body>
 

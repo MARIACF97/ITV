@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($mysqli->query($sql)) {
         echo "<p class='alert alert-success'>Sede registrada correctamente</p>";
         header("Location: sedes.php");
-        exit();
     } else {
         echo "<p class='alert alert-danger'>Error al registrar la sede</p>";
     }
@@ -55,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <br>
             <button type="submit" class="btn btn-success">Registrar</button>
+            <a href="index.php" class="btn btn-secondary ml-2">Volver</a>
         </form>
 
         <?php
