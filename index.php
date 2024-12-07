@@ -1,40 +1,33 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
-
-    <!-- Bootstrap JS -->
-    <script src="js/jquery-3.4.1.min.js" ></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <script src="js/jquery.dataTables.min.js" ></script>
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <title>Gestión de Vehículos e Inspecciones</title>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready (function () {
+        $(document).ready(function() {
             $('#tabla-inspecciones').DataTable();
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
             <h1>Vehículos y Sedes</h1>
         </div>
         <br>
-        
         <div class="row">
             <a href="registrar.php" class="btn btn-primary">Registrar Vehículo</a>
             <a href="sede.php" class="btn btn-primary">Gestionar Sedes</a>
         </div>
         <br>
         <br>
-        
         <table id="tabla" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -49,16 +42,14 @@
             </thead>
             <tbody>
                 <?php
-                // Establece conexión
                 require 'conexion.php';
 
-                // Consulta para obtener vehículos y sedes
                 $sql = "SELECT vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia 
                         FROM vehiculo
                         JOIN sede ON sede.id_sede = vehiculo.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while($fila = $resultado->fetch_assoc()){
+                while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>{$fila['matricula']}</td>";
                     echo "<td>{$fila['modelo']}</td>";
@@ -78,7 +69,6 @@
             <h1>Inspecciones Totales</h1>
         </div>
         <br>
-        
         <table id="tabla-inspecciones" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -91,7 +81,6 @@
             </thead>
             <tbody>
                 <?php
-                // Consulta para obtener todas las inspecciones
                 $sql = "SELECT inspeccion.id_inspeccion, vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia, 
                         inspeccion.fecha_inspeccion, inspeccion.hora_inspeccion, inspeccion.resultado 
                         FROM inspeccion
@@ -99,7 +88,7 @@
                         JOIN sede ON inspeccion.id_sede = sede.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while($fila = $resultado->fetch_assoc()){
+                while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>{$fila['matricula']} ({$fila['modelo']})</td>";
                     echo "<td>{$fila['localidad']}, {$fila['provincia']}</td>";
@@ -117,4 +106,5 @@
         </table>
     </div>
 </body>
+
 </html>
