@@ -4,7 +4,7 @@ require 'conexion.php';
 $matricula = $_POST['matricula'];
 $modelo = $_POST['modelo'];
 $combustible = $_POST['combustible'];
-$anio_fab = $_POST['año_fab'];
+$año_fab = $_POST['año_fab'];
 $id_sede = $_POST['id_sede'];
 
 $sql = "INSERT INTO vehiculo (matricula, modelo, combustible, año_fab, id_sede) VALUES ('$matricula', '$modelo', '$combustible', $año_fab, $id_sede)";
