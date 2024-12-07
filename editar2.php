@@ -1,40 +1,25 @@
-<!doctype html>
-<html lang="es">
+<?php
+require 'conexion.php';
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Guardar Cambios de Vehículo</title>
-</head>
+$id = $_POST['id'];
 
-<body>
-    <div class="container">
-        <?php
-        require 'conexion.php';
+if (isset($_POST['matricula'])) {
+    $matricula = $_POST['matricula'];
+    $modelo = $_POST['modelo'];
+    $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo' WHERE id_vehiculo=$id";
+} elseif (isset($_POST['id_inspeccion'])) {
+    $id_inspeccion = $_POST['id_inspeccion'];
+    $fecha_inspeccion = $_POST['fecha_inspeccion'];
+    $hora_inspeccion = $_POST['hora_inspeccion'];
+    $resultado = $_POST['resultado'];
+    $observaciones = $_POST['observaciones'];
+    $sql = "UPDATE inspeccion SET fecha_inspeccion='$fecha_inspeccion', hora_inspeccion='$hora_inspeccion', resultado='$resultado', observaciones='$observaciones' WHERE id_inspeccion=$id_inspeccion";
+}
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id'];
-            $matricula = $_POST['matricula'];
-            $modelo = $_POST['modelo'];
-            $id_sede = $_POST['id_sede'];
-
-            $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo', id_sede='$id_sede' WHERE id_vehiculo=$id";
-
-            $resultado = $mysqli->query($sql);
-
-            if ($resultado) {
-                echo "<p class='alert alert-success'>Vehículo modificado exitosamente</p>";
-            } else {
-                echo "<p class='alert alert-danger'>Error al modificar el vehículo</p>";
-            }
-
-            echo "<a href='index.php' class='btn btn-primary'>Regresar</a>";
-        } else {
-            echo "<p class='alert alert-danger'>Solicitud no válida</p>";
-        }
-        ?>
-    </div>
-</body>
-
-</html>
+if ($mysqli->query($sql)) {
+    echo "<p class='alert alert-success'>Registro actualizado correctamente</p>";
+} else {
+    echo "<p class='alert alert-danger'>Error al actualizar el registro</p>";
+}
+?>
+<a href="index.php" class="btn btn-primary">Regresar</a>

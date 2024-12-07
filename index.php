@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,12 +9,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#tabla-inspecciones').DataTable();
         });
     </script>
 </head>
-
 <body>
     <div class="container">
         <div class="row">
@@ -31,7 +29,7 @@
         <table id="tabla" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>Matricula</th>
+                    <th>Matrícula</th>
                     <th>Modelo</th>
                     <th>Sede</th>
                     <th>Localidad</th>
@@ -46,18 +44,18 @@
 
                 $sql = "SELECT vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia 
                         FROM vehiculo
-                        JOIN sede ON sede.id_sede = vehiculo.id_sede";
+                        JOIN sede ON vehiculo.id_sede = sede.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while ($fila = $resultado->fetch_assoc()) {
+                while($fila = $resultado->fetch_assoc()){
                     echo "<tr>";
                     echo "<td>{$fila['matricula']}</td>";
                     echo "<td>{$fila['modelo']}</td>";
                     echo "<td>{$fila['localidad']}</td>";
                     echo "<td>{$fila['provincia']}</td>";
                 ?>
-                    <td><a href="editar.php?id=<?php echo $fila['id']; ?>" class="btn btn-warning">Editar</a></td>
-                    <td><a href="eliminar.php?id=<?php echo $fila['id']; ?>" class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="editar.php?id=<?php echo $fila['id_vehiculo']; ?>" class="btn btn-warning">Editar</a></td>
+                    <td><a href="eliminar.php?id=<?php echo $fila['id_vehiculo']; ?>" class="btn btn-danger">Eliminar</a></td>
                 <?php
                     echo "</tr>";
                 }
@@ -88,7 +86,7 @@
                         JOIN sede ON inspeccion.id_sede = sede.id_sede";
                 $resultado = $mysqli->query($sql);
 
-                while ($fila = $resultado->fetch_assoc()) {
+                while($fila = $resultado->fetch_assoc()){
                     echo "<tr>";
                     echo "<td>{$fila['matricula']} ({$fila['modelo']})</td>";
                     echo "<td>{$fila['localidad']}, {$fila['provincia']}</td>";
@@ -96,8 +94,8 @@
                     echo "<td>{$fila['hora_inspeccion']}</td>";
                     echo "<td>{$fila['resultado']}</td>";
                 ?>
-                    <td><a href="editar.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-warning">Editar</a></td>
-                    <td><a href="eliminar.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="editar2.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-warning">Editar</a></td>
+                    <td><a href="eliminar_inspeccion.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-danger">Eliminar</a></td>
                 <?php
                     echo "</tr>";
                 }
@@ -106,5 +104,4 @@
         </table>
     </div>
 </body>
-
 </html>
