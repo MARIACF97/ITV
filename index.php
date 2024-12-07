@@ -1,25 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión ITV</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+    <!-- Bootstrap JS -->
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
+    <script src="js/jquery.dataTables.min.js" ></script>
+
+    <title>Gestión de Vehículos e Inspecciones</title>
+
+    <script>
+        $(document).ready (function () {
+            $('#tabla-inspecciones').DataTable();
+        });
+    </script>
 </head>
 <body>
-<div class="container">
-    <h1 class="mt-5">Sistema de Gestión ITV</h1>
-    <ul class="nav nav-tabs mt-3">
-        <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="php/insertar.php">Insertar</a></li>
-        <li class="nav-item"><a class="nav-link" href="php/registrar.php">Registrar</a></li>
-        <li class="nav-item"><a class="nav-link" href="php/eliminar.php">Eliminar</a></li>
-    </ul>
-    <div class="mt-4">
-        <h2>Lista de Inspecciones</h2>
-        <!-- Aquí se mostrarán los datos -->
+    <div class="container">
+        <div class="row">
+            <h1>Vehículos y Sedes</h1>
+        </div>
+        <br>
+        
+        <div class="row">
+            <a href="registrar.php" class="btn btn-primary">Registrar Vehículo</a>
+            <a href="sede.php" class="btn btn-primary">Gestionar Sedes</a>
+        </div>
+        <br>
+        <br>
+        
+        <table id="tabla" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Matricula</th>
+                    <th>Modelo</th>
+                    <th>Sede</th>
+                    <th>Localidad</th>
+                    <th>Provincia</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Establece conexión
+                require 'conexion.php';
+
+                // Consulta para obtener vehículos y sedes
+                $sql = "SELECT vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia 
+                        FROM vehiculo
+                        JOIN sede ON sede.id_sede = vehiculo.id_sede";
+                $resultado = $mysqli->query($sql);
+
+                while($fila = $resultado->fetch_assoc()){
+                    echo "<tr>";
+                    echo "<td>{$fila['matricula']}</td>";
+                    echo "<td>{$fila['modelo']}</td>";
+                    echo "<td>{$fila['localidad']}</td>";
+                    echo "<td>{$fila['provincia']}</td>";
+                ?>
+                    <td><a href="editar.php?id=<?php echo $fila['id']; ?>" class="btn btn-warning">Editar</a></td>
+                    <td><a href="eliminar.php?id=<?php echo $fila['id']; ?>" class="btn btn-danger">Eliminar</a></td>
+                <?php
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <h1>Inspecciones Totales</h1>
+        </div>
+        <br>
+        
+        <table id="tabla-inspecciones" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Vehículo</th>
+                    <th>Sede</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Consulta para obtener todas las inspecciones
+                $sql = "SELECT inspeccion.id_inspeccion, vehiculo.matricula, vehiculo.modelo, sede.localidad, sede.provincia, 
+                        inspeccion.fecha_inspeccion, inspeccion.hora_inspeccion, inspeccion.resultado 
+                        FROM inspeccion
+                        JOIN vehiculo ON inspeccion.id_vehiculo = vehiculo.id_vehiculo
+                        JOIN sede ON inspeccion.id_sede = sede.id_sede";
+                $resultado = $mysqli->query($sql);
+
+                while($fila = $resultado->fetch_assoc()){
+                    echo "<tr>";
+                    echo "<td>{$fila['matricula']} ({$fila['modelo']})</td>";
+                    echo "<td>{$fila['localidad']}, {$fila['provincia']}</td>";
+                    echo "<td>{$fila['fecha_inspeccion']}</td>";
+                    echo "<td>{$fila['hora_inspeccion']}</td>";
+                    echo "<td>{$fila['resultado']}</td>";
+                ?>
+                    <td><a href="editar.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-warning">Editar</a></td>
+                    <td><a href="eliminar.php?id=<?php echo $fila['id_inspeccion']; ?>" class="btn btn-danger">Eliminar</a></td>
+                <?php
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
