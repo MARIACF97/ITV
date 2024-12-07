@@ -36,21 +36,19 @@ $inspecciones = $mysqli->query("
                     <div class="form-group">
                         <label for="vehiculo">Vehículo</label>
                         <select name="id_vehiculo" id="vehiculo" class="form-control" required>
-                            <?php while ($vehiculo = $vehiculos->fetch_assoc()): ?>
-                                <option value="<?= $vehiculo['id_vehiculo'] ?>">
-                                    <?= "{$vehiculo['matricula']} - {$vehiculo['modelo']} (Combustible: {$vehiculo['combustible']}, Año: {$vehiculo['año_fab']})" ?>
-                                </option>
-                            <?php endwhile; ?>
+                            <?php
+                            $vehiculo = $vehiculos->fetch_assoc();
+                            echo "<option value='{$vehiculo['id_vehiculo']}'>{$vehiculo['matricula']} - {$vehiculo['modelo']} (Combustible: {$vehiculo['combustible']}, Año: {$vehiculo['año_fab']})</option>";
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="sede">Sede</label>
                         <select name="id_sede" id="sede" class="form-control" required>
-                            <?php while ($sede = $sedes->fetch_assoc()): ?>
-                                <option value="<?= $sede['id_sede'] ?>">
-                                    <?= "{$sede['localidad']} - {$sede['provincia']} (Dirección: {$sede['direccion']})" ?>
-                                </option>
-                            <?php endwhile; ?>
+                            <?php
+                            $sede = $sedes->fetch_assoc();
+                            echo "<option value='{$sede['id_sede']}'>{$sede['localidad']} - {$sede['provincia']} (Dirección: {$sede['direccion']})</option>";
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -84,16 +82,22 @@ $inspecciones = $mysqli->query("
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($inspeccion = $inspecciones->fetch_assoc()): ?>
-                            <tr>
-                                <td><?= $inspeccion['id_inspeccion'] ?></td>
-                                <td><?= $inspeccion['matricula'] ?></td>
-                                <td><?= $inspeccion['localidad'] ?></td>
-                                <td><?= $inspeccion['fecha_insp'] ?></td>
-                                <td><?= $inspeccion['hora_insp'] ?></td>
-                                <td><?= $inspeccion['resultado'] ?></td>
-                            </tr>
-                        <?php endwhile; ?>
+                        <?php
+                        while ($inspeccion = $inspecciones->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>{$inspeccion['id_inspeccion']}</td>
+                                    <td>{$inspeccion['matricula']}</td>
+                                    <td>{$inspeccion['localidad']}</td>
+                                    <td>{$inspeccion['fecha_insp']}</td>
+                                    <td>{$inspeccion['hora_insp']}</td>
+                                    <td>{$inspeccion['resultado']}</td>
+                                    <td>
+                                        <a href='editar_inspecciones.php?id={$inspeccion['id_inspeccion']}' class='btn btn-warning btn-sm'>Editar</a>
+                                        <a href='eliminar_inspecciones.php?id={$inspeccion['id_inspeccion']}' class='btn btn-danger btn-sm'>Eliminar</a>
+                                    </td>
+                                  </tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

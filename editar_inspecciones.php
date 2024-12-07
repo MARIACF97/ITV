@@ -54,22 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="vehiculo">Vehículo</label>
                 <select name="id_vehiculo" id="vehiculo" class="form-control" required>
-                    <?php while ($vehiculo = $vehiculos->fetch_assoc()): ?>
-                        <option value="<?php echo $vehiculo['id_vehiculo']; ?>" <?php if ($inspeccion['id_vehiculo'] == $vehiculo['id_vehiculo']) echo 'selected'; ?>>
-                            <?php echo $vehiculo['matricula'] . " - " . $vehiculo['modelo'] . " (Combustible: " . $vehiculo['combustible'] . ", Año: " . $vehiculo['año_fab'] . ")"; ?>
-                        </option>
-                    <?php endwhile; ?>
+                    <?php
+                    $vehiculos->data_seek(0);  // Resetea el puntero a la primera fila
+                    $vehiculo = $vehiculos->fetch_assoc();  // Extrae una sola fila
+                    echo "<option value='{$vehiculo['id_vehiculo']}' selected>{$vehiculo['matricula']} - {$vehiculo['modelo']} (Combustible: {$vehiculo['combustible']}, Año: {$vehiculo['año_fab']})</option>";
+                    ?>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="sede">Sede</label>
                 <select name="id_sede" id="sede" class="form-control" required>
-                    <?php while ($sede = $sedes->fetch_assoc()): ?>
-                        <option value="<?php echo $sede['id_sede']; ?>" <?php if ($inspeccion['id_sede'] == $sede['id_sede']) echo 'selected'; ?>>
-                            <?php echo $sede['localidad'] . " - " . $sede['provincia'] . " (Dirección: " . $sede['direccion'] . ")"; ?>
-                        </option>
-                    <?php endwhile; ?>
+                    <?php
+                    $sedes->data_seek(0);  // Resetea el puntero a la primera fila
+                    $sede = $sedes->fetch_assoc();  // Extrae una sola fila
+                    echo "<option value='{$sede['id_sede']}' selected>{$sede['localidad']} - {$sede['provincia']} (Dirección: {$sede['direccion']})</option>";
+                    ?>
                 </select>
             </div>
 
