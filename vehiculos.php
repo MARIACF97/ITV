@@ -23,6 +23,7 @@ $vehiculos = $mysqli->query("SELECT * FROM vehiculo");
                     <th>Modelo</th>
                     <th>Combustible</th>
                     <th>Año de Fabricación</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,8 +35,7 @@ $vehiculos = $mysqli->query("SELECT * FROM vehiculo");
                         <td><?= $vehiculo['combustible'] ?></td>
                         <td><?= $vehiculo['año_fab'] ?></td>
                         <td>
-                            <a href="editar_vehiculo.php?id=<?= $vehiculo['id_vehiculo'] ?>" class="btn btn-warning">Editar</a>
-                            <a href="eliminar_vehiculo.php?id=<?= $vehiculo['id_vehiculo'] ?>&tabla=vehiculo" class="btn btn-danger"></a>
+                            <a href="editar_vehiculo.php?id=<?= $vehiculo['id_vehiculo'] ?>" class="btn btn-warning">Editar</a> <br><br> <a href="eliminar_vehiculo.php?id=<?= $vehiculo['id_vehiculo'] ?>&tabla=vehiculo" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 <?php } ?>
