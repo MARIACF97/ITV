@@ -9,11 +9,11 @@ if (isset($_POST['matricula'])) {
     $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo' WHERE id_vehiculo=$id";
 } elseif (isset($_POST['id_inspeccion'])) {
     $id_inspeccion = $_POST['id_inspeccion'];
-    $fecha_inspeccion = $_POST['fecha_inspeccion'];
-    $hora_inspeccion = $_POST['hora_inspeccion'];
+    $fecha_insp = $_POST['fecha_insp'];
+    $hora_insp = $_POST['hora_insp'];
     $resultado = $_POST['resultado'];
     $observaciones = $_POST['observaciones'];
-    $sql = "UPDATE inspeccion SET fecha_inspeccion='$fecha_inspeccion', hora_inspeccion='$hora_inspeccion', resultado='$resultado', observaciones='$observaciones' WHERE id_inspeccion=$id_inspeccion";
+    $sql = "UPDATE inspeccion SET fecha_insp='$fecha_insp', hora_insp='$hora_insp', resultado='$resultado', observaciones='$observaciones' WHERE id_inspeccion=$id_inspeccion";
 }
 
 if ($mysqli->query($sql)) {

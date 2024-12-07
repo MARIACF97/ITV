@@ -32,11 +32,11 @@ $sedes = $mysqli->query("SELECT id_sede, localidad, provincia FROM sede");
             </div>
             <div class="form-group">
                 <label for="fecha">Fecha</label>
-                <input type="date" name="fecha_inspeccion" id="fecha" class="form-control" required>
+                <input type="date" name="fecha_insp" id="fecha" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="hora">Hora</label>
-                <input type="time" name="hora_inspeccion" id="hora" class="form-control" required>
+                <input type="time" name="hora_insp" id="hora" class="form-control" required>
             </div>
             <input type="hidden" name="resultado" value="pendiente">
             <div class="form-group">

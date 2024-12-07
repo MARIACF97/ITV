@@ -3,13 +3,13 @@ require 'conexion.php';
 
 $id_vehiculo = $_POST['id_vehiculo'];
 $id_sede = $_POST['id_sede'];
-$fecha_inspeccion = $_POST['fecha_inspeccion'];
-$hora_inspeccion = $_POST['hora_inspeccion'];
+$fecha_insp= $_POST['fecha_insp'];
+$hora_insp = $_POST['hora_insp'];
 $resultado = $_POST['resultado'];
 $observaciones = $_POST['observaciones'];
 
-$sql = "INSERT INTO inspeccion (id_vehiculo, id_sede, fecha_inspeccion, hora_inspeccion, resultado, observaciones)
-        VALUES ('$id_vehiculo', '$id_sede', '$fecha_inspeccion', '$hora_inspeccion', '$resultado', '$observaciones')";
+$sql = "INSERT INTO inspeccion (id_vehiculo, id_sede, fecha_insp, hora_insp, resultado, observaciones)
+        VALUES ('$id_vehiculo', '$id_sede', '$fecha_insp', '$hora_insp', '$resultado', '$observaciones')";
 
 if ($mysqli->query($sql)) {
     echo "<p>Inspección registrada con éxito</p>";

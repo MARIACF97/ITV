@@ -1,7 +1,7 @@
 <?php
 require 'conexion.php';
 $inspecciones = $mysqli->query("
-    SELECT inspeccion.id_inspeccion, vehiculo.matricula, sede.localidad, inspeccion.fecha_inspeccion, inspeccion.hora_inspeccion, inspeccion.resultado
+    SELECT inspeccion.id_inspeccion, vehiculo.matricula, sede.localidad, inspeccion.fecha_insp, inspeccion.hora_insp, inspeccion.resultado
     FROM inspeccion
     JOIN vehiculo ON inspeccion.id_vehiculo = vehiculo.id_vehiculo
     JOIN sede ON inspeccion.id_sede = sede.id_sede
@@ -37,8 +37,8 @@ $inspecciones = $mysqli->query("
                         <td><?= $inspeccion['id_inspeccion'] ?></td>
                         <td><?= $inspeccion['matricula'] ?></td>
                         <td><?= $inspeccion['localidad'] ?></td>
-                        <td><?= $inspeccion['fecha_inspeccion'] ?></td>
-                        <td><?= $inspeccion['hora_inspeccion'] ?></td>
+                        <td><?= $inspeccion['fecha_insp'] ?></td>
+                        <td><?= $inspeccion['hora_insp'] ?></td>
                         <td><?= $inspeccion['resultado'] ?></td>
                     </tr>
                 <?php } ?>

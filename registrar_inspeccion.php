@@ -7,14 +7,14 @@ $sedes = $mysqli->query("SELECT id_sede, localidad FROM sede");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_vehiculo = $_POST['id_vehiculo'];
     $id_sede = $_POST['id_sede'];
-    $fecha_inspeccion = $_POST['fecha_inspeccion'];
-    $hora_inspeccion = $_POST['hora_inspeccion'];
+    $fecha_insp = $_POST['fecha_insp'];
+    $hora_insp = $_POST['hora_insp'];
     $resultado = $_POST['resultado'];
     $observaciones = $_POST['observaciones'];
 
     $mysqli->query("
-        INSERT INTO inspeccion (id_vehiculo, id_sede, fecha_inspeccion, hora_inspeccion, resultado, observaciones)
-        VALUES ('$id_vehiculo', '$id_sede', '$fecha_inspeccion', '$hora_inspeccion', '$resultado', '$observaciones')
+        INSERT INTO inspeccion (id_vehiculo, id_sede, fecha_insp, hora_insp, resultado, observaciones)
+        VALUES ('$id_vehiculo', '$id_sede', '$fecha_insp', '$hora_insp', '$resultado', '$observaciones')
     ");
     header("Location: inspecciones.php");
     exit();
@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
             <div class="form-group">
-                <label for="fecha_inspeccion">Fecha</label>
-                <input type="date" name="fecha_inspeccion" id="fecha_inspeccion" class="form-control" required>
+                <label for="fecha_insp">Fecha</label>
+                <input type="date" name="fecha_ins" id="fecha_insp" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="hora_inspeccion">Hora</label>
-                <input type="time" name="hora_inspeccion" id="hora_inspeccion" class="form-control" required>
+                <label for="hora_insp">Hora</label>
+                <input type="time" name="hora_insp" id="hora_insp" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="resultado">Resultado</label>
