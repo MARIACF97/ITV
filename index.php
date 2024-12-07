@@ -1,47 +1,77 @@
+<!-- Registrar -->
 <?php
 require 'conexion.php';
 
-// Consulta SQL para obtener todos los registros de la tabla inspección junto con sus datos de vehículo y sede
-$sql = "SELECT inspeccion.id_inspeccion, vehiculo.matricula, sede.localidad, inspeccion.fecha_insp, inspeccion.hora_insp, inspeccion.resultado, inspeccion.observaciones
-        FROM inspeccion
-        JOIN vehiculo ON inspeccion.id_vehiculo = vehiculo.id_vehiculo
-        JOIN sede ON inspeccion.id_sede = sede.id_sede
-        ORDER BY inspeccion.id_inspeccion DESC"; // ordenamos por id_inspección en orden descendente
+// Consulta para obtener todos los vehículos
+$vehiculos = $mysqli->query("SELECT id_vehiculo, matricula, modelo, combustible, año_fab FROM vehiculo");
 
-$resultado = $mysqli->query($sql);
+// Consulta para obtener todas las sedes
+$sedes = $mysqli->query("SELECT id_sede, localidad, provincia, direccion FROM sede");
+?>
 
-if ($resultado->num_rows > 0) {
-    // Hay registros para mostrar
-    echo '<table class="table table-bordered">';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>ID Inspección</th>';
-    echo '<th>Matrícula</th>';
-    echo '<th>Localidad</th>';
-    echo '<th>Fecha</th>';
-    echo '<th>Hora</th>';
-    echo '<th>Resultado</th>';
-    echo '<th>Observaciones</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
 
-    // Iterar sobre los registros
-    while ($row = $resultado->fetch_assoc()) {
-        echo '<tr>';
-        echo '<td>' . $row['id_inspeccion'] . '</td>';
-        echo '<td>' . $row['matricula'] . '</td>';
-        echo '<td>' . $row['localidad'] . '</td>';
-        echo '<td>' . $row['fecha_insp'] . '</td>';
-        echo '<td>' . $row['hora_insp'] . '</td>';
-        echo '<td>' . $row['resultado'] . '</td>';
-        echo '<td>' . $row['observaciones'] . '</td>';
-        echo '</tr>';
-    }
+<!doctype html>
+<html lang="es">
 
-    echo '</tbody>';
-    echo '</table>';
-} else {
-    // No hay registros para mostrar
-    echo '<p>No data available in table</p>';
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Registrar Inspección</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registrar Inspección</h1>
+        <form action="registrar2.php" method="post">
+            <div class="form-group">
+                <label for="vehiculo">Vehículo</label>
+                <select name="id_vehiculo" id="vehiculo" class="form-control" required>
+                    <?php
+                    // Consulta para obtener todos los vehículos
+                    $vehiculos = $mysqli->query("SELECT id_vehiculo, matricula, modelo, combustible, año_fab FROM vehiculo");
+
+                    while ($vehiculo = $vehiculos->fetch_assoc()) {
+                        echo "<option value='{$vehiculo['id_vehiculo']}'>
+                                {$vehiculo['matricula']} - {$vehiculo['modelo']} 
+                                (Combustible: {$vehiculo['combustible']}, Año: {$vehiculo['año_fab']})
+                              </option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sede">Sede</label>
+                <select name="id_sede" id="sede" class="form-control" required>
+                    <?php
+                    // Consulta para obtener todas las sedes
+                    $sedes = $mysqli->query("SELECT id_sede, localidad, provincia, direccion FROM sede");
+
+                    while ($sede = $sedes->fetch_assoc()) {
+                        echo "<option value='{$sede['id_sede']}'>
+                                {$sede['localidad']} - {$sede['provincia']} 
+                                (Dirección: {$sede['direccion']})
+                              </option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" name="fecha_insp" id="fecha" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora</label>
+                <input type="time" name="hora_insp" id="hora" class="form-control" required>
+            </div>
+            <input type="hidden" name="resultado" value="PENDIENTE">
+            <div class="form-group">
+                <label for="observaciones">Observaciones</label>
+                <textarea name="observaciones" id="observaciones" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</body>
+
+</html>
