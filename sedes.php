@@ -12,12 +12,12 @@ $resultado = $mysqli->query($sql);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Gestionar Sedes</title>
+    <title>Gestión de Sedes</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>Sedes</h1>
+        <h1>Gestión de Sedes</h1>
         <a href="registrar_sede.php" class="btn btn-primary">Registrar Sede</a>
         <br><br>
         <table class="table">

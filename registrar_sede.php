@@ -22,6 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "<p class='alert alert-danger'>Error al registrar la sede</p>";
     }
+    // Verificar si el ID de sede existe
+    $sede_exists = $mysqli->query("SELECT 1 FROM sede WHERE id_sede = '$id_sede'")->num_rows > 0;
+
+    if (!$sede_exists) {
+        echo "<p class='alert alert-danger'>Error: El ID de sede no existe.</p>";
+        echo '<a href="index.php" class="btn btn-primary">Volver</a>';
+    }
 }
 ?>
 
@@ -30,8 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="utf-8">
-    <title>Registrar Sede</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Registrar Sede</title>
 </head>
 
 <body>
@@ -60,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            // Consulta para obtener la sede específica para actualización
+            // Consulta para obtener la sede específica para la actualización
             $result = $mysqli->query("SELECT localidad, provincia, direccion FROM sede WHERE id_sede=$id");
 
             if ($result->num_rows > 0) {
