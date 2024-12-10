@@ -1,8 +1,17 @@
-<!-- Registrar y guardar vehículo -->
+<!-- Registrar y guardar vehículo, por el cliente -->
 <?php
+session_start();
 require 'conexion.php';
 
+
+// Verificar que el usuario ha iniciado sesión
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id_usuario = $_SESSION['id_usuario'];
     $matricula = $_POST['matricula'];
     $modelo = $_POST['modelo'];
     $combustible = $_POST['combustible'];

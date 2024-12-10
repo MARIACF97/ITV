@@ -10,4 +10,4 @@ if ($mysqli->query($sql)) {
     echo "<p class='alert alert-danger'>Error al eliminar la inspección</p>";
 }
 ?>
-<a href="inpecciones.php" class="btn btn-primary">Regresar</a>
+<a href="inspecciones.php" class="btn btn-primary">Regresar</a>

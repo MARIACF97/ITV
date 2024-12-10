@@ -26,13 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "<p class='alert alert-danger'>Error al registrar la inspección</p>";
     }
-    // Verificar si el ID de inspección existe
-    $inspeccion_exists = $mysqli->query("SELECT 1 FROM inspeccion WHERE id_inspeccion = '$id_inspeccion'")->num_rows > 0;
-
-    if (!$inspeccion_exists) {
-        echo "<p class='alert alert-danger'>Error: El ID de inspección no existe.</p>";
-        echo '<a href="index.php" class="btn btn-primary">Volver</a>';
-    }
 }
 ?>
 
@@ -210,3 +203,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+
+<?php
+session_start();
+session_destroy(); // Destruye todas las variables de sesión
+header("Location: index.php");
+exit;
+?>
