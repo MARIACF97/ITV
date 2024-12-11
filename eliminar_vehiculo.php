@@ -1,8 +1,8 @@
 <?php
 require 'conexion.php';
 
-$id = $_GET['id'];
-$sql = "DELETE FROM vehiculo WHERE id_vehiculo=$id";
+$id_vehiculo = $_GET['id_vehiculo'];
+$sql = "DELETE FROM vehiculo WHERE id_vehiculo=$id_vehiculo";
 
 if ($mysqli->query($sql)) {
     echo "<p class='alert alert-success'>Vehículo eliminado correctamente</p>";

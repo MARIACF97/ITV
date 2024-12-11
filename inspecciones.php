@@ -55,7 +55,7 @@ $inspecciones = $mysqli->query("
                     echo "<td>{$inspeccion['resultado']}</td>";
                     echo "<td>{$inspeccion['observaciones']}</td>";
                 ?>
-                    <td><a href="editar_inspecciones.php?id=<?php echo $inspeccion['id_inspeccion']; ?>" class='btn btn-warning btn-sm'>Editar</a></td>
+                    <td><a href="editar_inspeccion.php?id=<?php echo $inspeccion['id_inspeccion']; ?>" class='btn btn-warning btn-sm'>Editar</a></td>
                     <td><a href="eliminar_inspeccion.php?id=<?php echo $inspeccion['id_inspeccion']; ?>" class='btn btn-danger btn-sm'>Eliminar</a></td>
                 <?php
                     echo "</tr>";

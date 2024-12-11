@@ -1,10 +1,14 @@
 <?php
 require 'conexion.php';
 
-$id = $_GET['id'];
-$sql = "SELECT id_sede, localidad, provincia, direccion FROM sede WHERE id_sede = $id";
+$id_sede = $_GET['id_sede'];
+$sql = "SELECT id_sede, localidad, provincia, direccion FROM sede WHERE id_sede = $id_sede";
 $resultado = $mysqli->query($sql);
 $sede = $resultado->fetch_assoc();
+
+if (!$sede) {
+    die("<div class='alert alert-danger'>Error: No se encontró la sede con el ID proporcionado.</div>");
+}
 ?>
 
 <!doctype html>
@@ -20,7 +24,7 @@ $sede = $resultado->fetch_assoc();
 <body>
     <div class="container">
         <h1>Editar Sede</h1>
-        <form action="guardar_sede.php" method="post">
+        <form action="registrar_sede.php" method="post">
             <input type="hidden" name="id" value="<?php echo $sede['id_sede']; ?>">
             <div class="form-group">
                 <label for="localidad">Localidad</label>
@@ -38,7 +42,7 @@ $sede = $resultado->fetch_assoc();
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <a href="sede.php" class="btn btn-secondary">Cancelar</a>
+            <a href="sedes.php" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>

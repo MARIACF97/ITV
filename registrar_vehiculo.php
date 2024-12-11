@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $combustible = $_POST['combustible'];
     $año_fab = $_POST['año_fab'];
 
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
+    if (isset($_POST['id_vehiculo'])) {
+        $id_vehiculo = $_POST['id_vehiculo'];
         // Actualización de vehículo existente
-        $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo', combustible='$combustible', año_fab='$año_fab' WHERE id_vehiculo=$id";
+        $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo', combustible='$combustible', año_fab='$año_fab' WHERE id_vehiculo=$id_vehiculo";
     } else {
         // Consulta para insertar el nuevo vehículo
         $sql = "INSERT INTO vehiculo (matricula, modelo, combustible, año_fab)
@@ -89,10 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <?php
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
+        if (isset($_GET['id_vehiculod'])) {
+            $id_vehiculo = $_GET['id_vehiculo'];
             // Consulta para obtener el vehículo específico para la actualización
-            $result = $mysqli->query("SELECT matricula, modelo, combustible, año_fab FROM vehiculo WHERE id_vehiculo=$id");
+            $result = $mysqli->query("SELECT matricula, modelo, combustible, año_fab FROM vehiculo WHERE id_vehiculo=$id_vehiculo");
 
             if ($result->num_rows > 0) {
                 $vehiculo = $result->fetch_assoc();
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
                 <h2>Actualizar Vehículo</h2>
                 <form method="post">
-                    <input type="hidden" name="id" value="<?= $id ?>">
+                    <input type="hidden" name="id_vehiculo" value="<?= $id_vehiculo ?>">
                     <div class="form-group">
                         <label for="matricula">Matrícula: </label>
                         <input type="text" name="matricula" id="matricula" class="form-control" required>

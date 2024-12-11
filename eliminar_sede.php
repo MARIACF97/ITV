@@ -1,8 +1,8 @@
 <?php
 require 'conexion.php';
 
-$id = $_GET['id'];
-$sql = "DELETE FROM sede WHERE id_sede=$id";
+$id_sede = $_GET['id_sede'];
+$sql = "DELETE FROM sede WHERE id_sede=$id_sede";
 
 if ($mysqli->query($sql)) {
     echo "<p class='alert alert-success'>Sede eliminada correctamente</p>";

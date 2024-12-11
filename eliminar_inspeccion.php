@@ -1,8 +1,8 @@
 <?php
 require 'conexion.php';
 
-$id = $_GET['id'];
-$sql = "DELETE FROM inspeccion WHERE id_inspeccion=$id";
+$id_inspeccion = $_GET['id_inspeccion'];
+$sql = "DELETE FROM inspeccion WHERE id_inspeccion=$id_inspeccion";
 
 if ($mysqli->query($sql)) {
     echo "<p class='alert alert-success'>Inspección eliminada correctamente</p>";

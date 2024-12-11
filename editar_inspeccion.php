@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hora_insp = $_POST['hora_insp'];
     $resultado = $_POST['resultado'];
     $observaciones = $_POST['observaciones'];
+    $id_trabajador = $_POST['id_trabajador'];
 
     // Consulta para actualizar la inspección
-    $sql = "UPDATE inspeccion SET id_vehiculo = '$id_vehiculo', id_sede = '$id_sede', fecha_insp = '$fecha_insp', hora_insp = '$hora_insp', resultado = '$resultado', observaciones = '$observaciones' WHERE id_inspeccion = $id_inspeccion";
+    $sql = "UPDATE inspeccion SET id_vehiculo = '$id_vehiculo', id_sede = '$id_sede', fecha_insp = '$fecha_insp', hora_insp = '$hora_insp', resultado = '$resultado', observaciones = '$observaciones', id_trabajador = '$observaciones'  WHERE id_inspeccion = $id_inspeccion";
 
     if ($mysqli->query($sql)) {
         echo "<p class='alert alert-success'>Inspección actualizada con éxito</p>";
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <h1>Editar Inspección</h1>
-        <form action="editar_inspecciones.php" method="post">
+        <form action="editar_inspeccion.php" method="post">
             <input type="hidden" name="id_inspeccion" value="<?php echo $inspeccion['id_inspeccion']; ?>">
 
             <div class="form-group">

@@ -6,7 +6,7 @@ $id = $_POST['id'];
 if (isset($_POST['matricula'])) {
     $matricula = $_POST['matricula'];
     $modelo = $_POST['modelo'];
-    $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo' WHERE id_vehiculo=$id";
+    $sql = "UPDATE vehiculo SET matricula='$matricula', modelo='$modelo' WHERE id_vehiculo=$id_vehiculo";
 } elseif (isset($_POST['id_inspeccion'])) {
     $id_inspeccion = $_POST['id_inspeccion'];
     $fecha_insp = $_POST['fecha_insp'];

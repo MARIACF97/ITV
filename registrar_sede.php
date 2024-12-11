@@ -7,10 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $provincia = $_POST['provincia'];
     $direccion = $_POST['direccion'];
 
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
+    if (isset($_POST['id_sede'])) {
+        $id = $_POST['id_sede'];
         // Actualización de sede existente
-        $sql = "UPDATE sede SET localidad='$localidad', provincia='$provincia', direccion='$direccion' WHERE id_sede=$id";
+        $sql = "UPDATE sede SET localidad='$localidad', provincia='$provincia', direccion='$direccion' WHERE id_sede=$id_sede";
     } else {
         // Inserción de nueva sede
         $sql = "INSERT INTO sede (localidad, provincia, direccion) VALUES ('$localidad', '$provincia', '$direccion')";
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             // Consulta para obtener la sede específica para la actualización
-            $result = $mysqli->query("SELECT localidad, provincia, direccion FROM sede WHERE id_sede=$id");
+            $result = $mysqli->query("SELECT localidad, provincia, direccion FROM sede WHERE id_sede=$id_sede");
 
             if ($result->num_rows > 0) {
                 $sede = $result->fetch_assoc();
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
                 <h2>Actualizar Sede</h2>
                 <form method="post">
-                    <input type="hidden" name="id" value="<?= $id ?>">
+                    <input type="hidden" name="id_sede" value="<?= $id_sede ?>">
                     <div class="form-group">
                         <label for="localidad">Localidad: </label>
                         <input type="text" name="localidad" id="localidad" class="form-control" value="<?= $localidad ?>" required>
